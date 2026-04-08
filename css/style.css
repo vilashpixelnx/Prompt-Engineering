@@ -143,6 +143,22 @@ body.dark-theme {
       backdrop-filter: blur(14px);
     }
 
+    .hero-actions .btn-secondary {
+      box-shadow: 0 12px 28px rgba(19, 34, 56, 0.1);
+    }
+
+    body.dark-theme .hero-actions .btn-secondary {
+      background: rgba(23, 34, 53, 0.92);
+      border-color: rgba(122, 162, 255, 0.24);
+      color: #eef4ff;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+    }
+
+    body.dark-theme .hero-actions .btn-secondary:hover {
+      background: rgba(34, 49, 74, 0.98);
+      border-color: rgba(155, 135, 255, 0.36);
+    }
+
     .btn:hover {
       transform: translateY(-2px);
     }
@@ -726,6 +742,215 @@ body.dark-theme {
       margin: 0 auto 16px;
     }
 
+    .pricing-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-section::before,
+    .pricing-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(70px);
+      opacity: 0.38;
+    }
+
+    .pricing-section::before {
+      width: 280px;
+      height: 280px;
+      right: -80px;
+      top: 120px;
+      background: rgba(115, 87, 255, 0.22);
+    }
+
+    .pricing-section::after {
+      width: 240px;
+      height: 240px;
+      left: -70px;
+      bottom: 40px;
+      background: rgba(17, 179, 163, 0.18);
+    }
+
+    .pricing-head {
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    .pricing-badge {
+      background: rgba(47, 109, 246, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(47, 109, 246, 0.16);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pricing-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 248, 255, 0.94));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px 28px 26px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(47, 109, 246, 0.22);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(115, 87, 255, 0.28);
+      transform: translateY(-10px);
+    }
+
+    .pricing-ribbon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      border-radius: 28px 28px 0 0;
+      background: linear-gradient(90deg, #2f6df6, #7357ff, #11b3a3);
+      color: #ffffff;
+    }
+
+    .pricing-card.featured h3,
+    .pricing-card.featured .pricing-tagline,
+    .pricing-card.featured .pricing-note,
+    .pricing-card.featured .pricing-cost {
+      margin-top: 34px;
+    }
+
+    .pricing-card h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .pricing-tagline {
+      text-align: center;
+      color: var(--primary);
+      font-family: "Poppins", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pricing-note {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .pricing-cost {
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .pricing-cost span {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .pricing-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(47, 109, 246, 0.28);
+      background: rgba(47, 109, 246, 0.08);
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 20px;
+      box-shadow: 0 0 0 1px rgba(47, 109, 246, 0.08), 0 8px 18px rgba(47, 109, 246, 0.1);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .pricing-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(47, 109, 246, 0.14);
+    }
+
+    .featured-btn {
+      background: linear-gradient(90deg, #2f6df6, #7357ff, #11b3a3);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--muted);
+    }
+
+    .pricing-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .pricing-list i {
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    .pricing-link {
+      display: block;
+      text-align: center;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    body.dark-theme .pricing-card {
+      background: linear-gradient(180deg, rgba(18, 24, 32, 0.96), rgba(18, 24, 32, 0.9));
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    body.dark-theme .pricing-card:hover,
+    body.dark-theme .pricing-card.featured {
+      border-color: rgba(122, 162, 255, 0.24);
+    }
+
+    body.dark-theme .pricing-btn {
+      background: rgba(122, 162, 255, 0.1);
+      color: #c8d8ff;
+      border-color: rgba(122, 162, 255, 0.42);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    body.dark-theme .pricing-btn:hover {
+      background: rgba(122, 162, 255, 0.18);
+    }
+
+    body.dark-theme .featured-btn {
+      background: linear-gradient(90deg, #6f98ff, #9b87ff, #34d6c6);
+      color: #ffffff;
+    }
+
     .cta {
       padding: 110px 0;
     }
@@ -875,6 +1100,7 @@ body.dark-theme {
       .card-grid,
       .tech-grid,
       .lab-shell,
+      .pricing-grid,
       .usecases,
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -921,6 +1147,7 @@ body.dark-theme {
       .card-grid,
       .tech-grid,
       .lab-shell,
+      .pricing-grid,
       .usecases,
       .footer-grid,
       .example-row {
