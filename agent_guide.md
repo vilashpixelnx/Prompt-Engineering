@@ -120,7 +120,7 @@ Centered text Tablet
 2 column Desktop
 Full layout
 Code Rules HTML
-Semantic
+Semanticx
 Clean structure CSS
 Separate file
 Reusable classes JS

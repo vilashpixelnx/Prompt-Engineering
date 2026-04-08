@@ -26,7 +26,7 @@ AOS.init({
     const themeToggle = document.getElementById("themeToggle");
     const toggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
-    const navAnchorLinks = navLinks.querySelectorAll("a[href^='#']");
+    const navPageLinks = navLinks.querySelectorAll("a[data-page]");
     const backToTop = document.getElementById("backToTop");
     const labTabs = document.querySelectorAll(".lab-tab");
     const labPanels = document.querySelectorAll(".lab-panel");
@@ -59,11 +59,13 @@ AOS.init({
       navLinks.classList.toggle("open");
     });
 
-    function setActiveNavLink(targetId) {
-      navAnchorLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === targetId);
+    function setActiveNavLink(pageKey) {
+      navPageLinks.forEach((link) => {
+        link.classList.toggle("active", link.dataset.page === pageKey);
       });
     }
+
+    setActiveNavLink(body.dataset.page || "home");
 
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
@@ -81,7 +83,6 @@ AOS.init({
 
         event.preventDefault();
         navLinks.classList.remove("open");
-        setActiveNavLink(targetId);
 
         if (lenis) {
           lenis.scrollTo(target, {
@@ -96,24 +97,6 @@ AOS.init({
         }
       });
     });
-
-    const sections = document.querySelectorAll("main section[id], footer[id]");
-
-    function syncActiveNavOnScroll() {
-      const scrollPosition = window.scrollY + 140;
-      let currentId = "#home";
-
-      sections.forEach((section) => {
-        if (scrollPosition >= section.offsetTop) {
-          currentId = `#${section.id}`;
-        }
-      });
-
-      setActiveNavLink(currentId);
-    }
-
-    syncActiveNavOnScroll();
-    window.addEventListener("scroll", syncActiveNavOnScroll);
 
     backToTop.addEventListener("click", () => {
       if (lenis) {
@@ -192,8 +175,12 @@ AOS.init({
 
     document.getElementById("analyzeBtn").addEventListener("click", () => {
       const text = document.getElementById("promptInput").value;
+      const scoreGrid = document.querySelector("#panel-score .score-grid");
+      const trainerFeedback = document.getElementById("trainerFeedback");
+
       if (!text.trim()) {
-        document.getElementById("trainerFeedback").textContent = "Please enter a prompt before analyzing.";
+        scoreGrid.classList.remove("visible");
+        trainerFeedback.classList.remove("visible");
         return;
       }
 
@@ -201,7 +188,9 @@ AOS.init({
       setBar("scoreSpecific", "pctSpecific", scores.specificity);
       setBar("scoreClarity", "pctClarity", scores.clarity);
       setBar("scoreStructure", "pctStructure", scores.structure);
-      document.getElementById("trainerFeedback").textContent = buildFeedback(scores);
+      scoreGrid.classList.add("visible");
+      trainerFeedback.classList.add("visible");
+      trainerFeedback.textContent = buildFeedback(scores);
     });
 
     async function callAnthropic({ apiKey, prompt, outputId, statusId, systemPrompt }) {
